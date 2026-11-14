@@ -1,0 +1,26 @@
+AddType application/manifest+json .json
+AddType application/json .json
+
+# ---------- PERF: GZIP/DEFLATE COMPRESSION ----------
+# style.css and common.js are ~140KB/180KB uncompressed; text compresses
+# ~70-80%, so this alone cuts most of the page-load payload.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>
+
+# ---------- PERF: BROWSER CACHING FOR STATIC ASSETS ----------
+# CSS/JS are already cache-busted with ?v=3 query strings, so it's safe to
+# let browsers cache them long-term instead of re-requesting every visit.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType font/ttf "access plus 1 year"
+</IfModule>
+
+# ---------- SECURITY: BLOCK DIRECT ACCESS TO SENSITIVE PHP ----------
+<FilesMatch "^(db_credentials|config)\.php$">
+  Require all denied
+</FilesMatch>
