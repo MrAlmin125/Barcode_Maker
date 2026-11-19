@@ -6,7 +6,7 @@
    each hardcoding the same host/user/pass/db name separately.
 ========================================================= */
 
-if (!defined('DB_HOST')) define('DB_HOST', 'sql110.infinityfree.com');
-if (!defined('DB_USER')) define('DB_USER', 'if0_40706792');
-if (!defined('DB_PASS')) define('DB_PASS', 'NewTree1');
-if (!defined('DB_NAME')) define('DB_NAME', 'if0_40706792_barcodes');
+if (!defined('DB_HOST')) define('DB_HOST', 'Host Name');
+if (!defined('DB_USER')) define('DB_USER', 'User Name');
+if (!defined('DB_PASS')) define('DB_PASS', 'Password');
+if (!defined('DB_NAME')) define('DB_NAME', 'Database Name');
